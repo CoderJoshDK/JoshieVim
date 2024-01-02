@@ -18,7 +18,10 @@ return
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
         auto_install = false,
 
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = true,
+        },
         indent = { enable = true },
         incremental_selection = {
           enable = true,

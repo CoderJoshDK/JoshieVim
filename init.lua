@@ -27,6 +27,10 @@ vim.api.nvim_create_autocmd('BufEnter', {
   command = 'setlocal wrap'
 })
 
+vim.o.spelllang = 'en_us'
+vim.o.spell = true
+vim.o.spelloptions = "camel"
+
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
@@ -40,14 +44,13 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
-
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
-vim.opt.scrolloff = 8 -- Keep the cursor off the edge of the screen
+vim.opt.scrolloff = 10 -- Keep the cursor off the edge of the screen
 
 -- Decrease update time
 vim.o.updatetime = 50

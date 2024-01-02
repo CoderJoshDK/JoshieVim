@@ -17,25 +17,22 @@ return {
   opts = {
     -- Full list with :help conform-formatters
     -- Define your formatters
+    formatters = {
+      ruff_isort = {
+        command = "ruff",
+        args = { "check", "--select", "I", "--fix", "--stdin-filename", "$FILENAME" },
+        stdin = true,
+      },
+    },
     formatters_by_ft = {
       -- lua = { "stylua" },
 
-      -- TODO: https://docs.astral.sh/ruff/formatter/#sorting-imports
-      -- ruff_format does not automatically do isort.
-      -- It can be done in a code action but for now, I am keeping isort. Remove when updated
-      python = { "ruff_format", "isort" },
-      -- python = { "ruff_format" },
-
+      python = { "ruff_isort", "ruff_format" },
       -- javascript = { { "prettierd", "prettier" } },
       markdown = { "markdownlint" },
     },
     -- Set up format-on-save
     format_on_save = { timeout_ms = 1000, lsp_fallback = true }, -- Customize formatters
-    formatters = {
-      shfmt = {
-        prepend_args = { "-i", "2" },
-      },
-    },
   },
   init = function()
     -- If you want the formatexpr, here is the place to set it

@@ -18,7 +18,7 @@ return {
   config = function()
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
-    local on_attach = function(_, bufnr)
+    local on_attach = function(client, bufnr)
       -- NOTE: Remember that lua is a real programming language, and as such it is possible
       -- to define small helper and utility functions so you don't have to repeat yourself
       -- many times.
@@ -31,6 +31,9 @@ return {
         end
 
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+      end
+      if client.name == "ruff_lsp" then
+        client.server_capabilities.hoverProvider = false
       end
 
       nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
@@ -95,35 +98,10 @@ return {
     local servers = {
       -- clangd = {},
       -- gopls = {},
-      -- pyright = {},
+
       -- rust_analyzer = {},
-      -- ruff_lsp = { args = { config = "~/.config/ruff/pyproject.toml" } },
+      ruff_lsp = {},
       -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-      -- pylsp = {
-      --   pylsp = {
-      --     plugins = {
-      --       ruff = {
-      --         enabled = true, -- Enable the plugin
-      --         -- executable = "<path-to-ruff-bin>",   -- Custom path to ruff
-      --         -- path = "<path_to_custom_ruff_toml>", -- Custom config for ruff to use
-      --         extendSelect = { "I" },          -- Rules that are additionally used by ruff
-      --         extendIgnore = { "C90" },        -- Rules that are additionally ignored by ruff
-      --         format = { "I" },                -- Rules that are marked as fixable by ruff that should be fixed when running textDocument/formatting
-      --         severities = { ["D212"] = "I" }, -- Optional table of rules where a custom severity is desired
-      --         unsafeFixes = false,             -- Whether or not to offer unsafe fixes as code actions. Ignored with the "Fix All" action
-      --
-      --         -- Rules that are ignored when a pyproject.toml or ruff.toml is present:
-      --         lineLength = 99,                                 -- Line length to pass to ruff checking and formatting
-      --         exclude = { "__about__.py" },                    -- Files to be excluded by ruff checking
-      --         select = { "F", "E", "B", "A" },                 -- Rules to be enabled by ruff
-      --         ignore = { "D210" },                             -- Rules to be ignored by ruff
-      --         perFileIgnores = { ["__init__.py"] = "CPY001" }, -- Rules that should be ignored for specific files
-      --         preview = false,                                 -- Whether to enable the preview style linting and formatting.
-      --         targetVersion = "py310",                         -- The minimum python version to target (applies for both linting and formatting).
-      --       },
-      --       jedi_completion = { fuzzy = true },
-      --     },
-      --   }, },
       lua_ls = {
         Lua = {
           workspace = { checkThirdParty = false },
@@ -154,77 +132,16 @@ return {
           capabilities = capabilities,
           on_attach = on_attach,
           settings = servers[server_name],
-          -- filetypes = (servers[server_name] or {}).filetypes,
+          -- filetypes = (servers[server_name] or {}).filetypes, -- defaults are fine
         })
       end,
     })
-    require("lspconfig").ruff_lsp.setup {
-      on_attach = on_attach,
+    require("lspconfig").jedi_language_server.setup({
       capabilities = capabilities,
-      filetypes = { "python" },
+      on_attach = on_attach,
       init_options = {
-        settings = {
-          -- Any extra CLI arguments for `ruff` go here.
-          args = {
-            -- "--config=" .. vim.loop.os_homedir() .. "/.config/ruff/pyproject.toml",
-          },
-          -- lint = {
-          --   args = {
-          --     "--select=ARG,F,E,I001",
-          --     "--line-length=99",
-          --   },
-          -- },
-        },
+        diagnostics = { enable = false },
       },
-    }
-    --[[ mason_lspconfig.setup_handlers {
-      require('lspconfig').pylsp.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = { pylsp = {
-          plugins = {
-            -- formatter options
-            black = { enabled = true },
-            autopep8 = { enabled = false },
-            yapf = { enabled = false },
-            -- linter options
-            -- pylint = { enabled = true, executable = "pylint" },
-            pylint = { enabled = false },
-            ruff = {
-              enabled = true,
-              -- executable = "<path-to-ruff-bin>",   -- Custom path to ruff
-              -- path = "<path_to_custom_ruff_toml>", -- Custom config for ruff to use
-              extendSelect = { "I" },          -- Rules that are additionally used by ruff
-              extendIgnore = { "C90" },        -- Rules that are additionally ignored by ruff
-              format = { "I" },                -- Rules that are marked as fixable by ruff that should be fixed when running textDocument/formatting
-              severities = { ["D212"] = "I" }, -- Optional table of rules where a custom severity is desired
-              unsafeFixes = false,             -- Whether or not to offer unsafe fixes as code actions. Ignored with the "Fix All" action
-
-              -- Rules that are ignored when a pyproject.toml or ruff.toml is present:
-              lineLength = 88,                                 -- Line length to pass to ruff checking and formatting
-              exclude = { "__about__.py" },                    -- Files to be excluded by ruff checking
-              select = { "F" },                                -- Rules to be enabled by ruff
-              ignore = { "D210" },                             -- Rules to be ignored by ruff
-              perFileIgnores = { ["__init__.py"] = "CPY001" }, -- Rules that should be ignored for specific files
-              preview = false,                                 -- Whether to enable the preview style linting and formatting.
-              targetVersion = "py311",                         -- The minimum python version to target (applies for both linting and formatting).
-            },
-            pyflakes = { enabled = false },
-            pycodestyle = { enabled = false },
-            -- type checker
-            pylsp_mypy = {
-              enabled = true,
-              overrides = { "--python-executable", py_path, true },
-              report_progress = true,
-              live_mode = false
-            },
-            -- auto-completion options
-            jedi_completion = { fuzzy = true },
-            -- import sorting
-            isort = { enabled = false },
-          }
-        } }
-      }
-    } ]]
+    })
   end,
 }

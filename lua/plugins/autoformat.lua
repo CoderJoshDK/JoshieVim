@@ -19,14 +19,18 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       -- lua = { "stylua" },
-      -- python = { "isort", "black" },
-      python = { "ruff_format" },
+
+      -- TODO: https://docs.astral.sh/ruff/formatter/#sorting-imports
+      -- ruff_format does not automatically do isort.
+      -- It can be done in a code action but for now, I am keeping isort. Remove when updated
+      python = { "ruff_format", "isort" },
+      -- python = { "ruff_format" },
+
       -- javascript = { { "prettierd", "prettier" } },
       markdown = { "markdownlint" },
     },
     -- Set up format-on-save
-    format_on_save = { timeout_ms = 1000, lsp_fallback = true },
-    -- Customize formatters
+    format_on_save = { timeout_ms = 1000, lsp_fallback = true }, -- Customize formatters
     formatters = {
       shfmt = {
         prepend_args = { "-i", "2" },

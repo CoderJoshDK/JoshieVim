@@ -60,17 +60,17 @@ return {
           gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'reset git hunk' })
         -- normal mode
-        map('n', '<leader>hs', gs.stage_hunk, { desc = 'git stage hunk' })
-        map('n', '<leader>hr', gs.reset_hunk, { desc = 'git reset hunk' })
-        map('n', '<leader>hS', gs.stage_buffer, { desc = 'git Stage buffer' })
-        map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
-        map('n', '<leader>hR', gs.reset_buffer, { desc = 'git Reset buffer' })
-        map('n', '<leader>hp', gs.preview_hunk, { desc = 'preview git hunk' })
-        map('n', '<leader>hb', function()
+        map('n', '<leader>gs', gs.stage_hunk, { desc = 'git stage hunk' })
+        map('n', '<leader>gr', gs.reset_hunk, { desc = 'git reset hunk' })
+        map('n', '<leader>gS', gs.stage_buffer, { desc = 'git Stage buffer' })
+        map('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
+        map('n', '<leader>gR', gs.reset_buffer, { desc = 'git Reset buffer' })
+        map('n', '<leader>gp', gs.preview_hunk, { desc = 'preview git hunk' })
+        map('n', '<leader>gb', function()
           gs.blame_line { full = false }
         end, { desc = 'git blame line' })
-        map('n', '<leader>hd', gs.diffthis, { desc = 'git diff against index' })
-        map('n', '<leader>hD', function()
+        map('n', '<leader>gd', gs.diffthis, { desc = 'git diff against index' })
+        map('n', '<leader>gD', function()
           gs.diffthis '~'
         end, { desc = 'git diff against last commit' })
 

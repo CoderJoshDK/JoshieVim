@@ -38,6 +38,7 @@ return {
 
       nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
       nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+      nmap("<leader>cd", vim.diagnostic.open_float, "[C]ode [D]iagnostic")
 
       nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
       nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -69,7 +70,6 @@ return {
       ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
       ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
       ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
-      ["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
       ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
       ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
       ["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
@@ -79,7 +79,7 @@ return {
     -- required for visual <leader>hs (hunk stage) to work
     require("which-key").register({
       ["<leader>"] = { name = "VISUAL <leader>" },
-      ["<leader>h"] = { "Git [H]unk" },
+      ["<leader>g"] = { "[G]it Hunk" },
     }, { mode = "v" })
 
     -- mason-lspconfig requires that these setup functions are called in this order
@@ -101,6 +101,10 @@ return {
 
       -- rust_analyzer = {},
       ruff_lsp = {},
+      pyright = {
+        pyright = { disableOrganizeImports = true },
+        python = {}
+      },
       -- html = { filetypes = { 'html', 'twig', 'hbs'} },
       lua_ls = {
         Lua = {
@@ -135,13 +139,6 @@ return {
           -- filetypes = (servers[server_name] or {}).filetypes, -- defaults are fine
         })
       end,
-    })
-    require("lspconfig").jedi_language_server.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      init_options = {
-        diagnostics = { enable = false },
-      },
     })
   end,
 }

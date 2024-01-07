@@ -98,3 +98,13 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+
+-- Playground functions
+-- scratch for temporary code
+vim.keymap.set("n", "<leader>rss", "<cmd>Scratch<cr>", { desc = '[R]un [S]cratch [S]tart' })
+vim.keymap.set("n", "<leader>rsn", "<cmd>ScratchWithName<cr>", { desc = '[R]un [S]cratch [N]ame' })
+vim.keymap.set("n", "<leader>rso", "<cmd>ScratchOpen<cr>", { desc = '[R]un [S]cratch [O]pen' })
+vim.keymap.set("n", "<leader>rsO", "<cmd>ScratchOpenFzf<cr>", { desc = '[R]un [S]cratch Fuzzy Open' })
+-- Sniprun for running code
+vim.keymap.set({ 'n', 'v' }, '<leader>rc', '<Plug>SnipRun', { silent = true, desc = '[R]un [C]ode' })
+-- vim.keymap.set('n', '<F5>', ":let b:caret=winsaveview() <CR> | :%SnipRun <CR>| :call winrestview(b:caret) <CR>", {})

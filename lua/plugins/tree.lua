@@ -8,7 +8,7 @@ return {
   config = function()
     require("nvim-tree").setup {
       view = {
-        width = 15,
+        width = 20,
       },
       filters = {
         git_ignored = false,

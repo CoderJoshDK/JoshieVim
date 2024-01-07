@@ -20,6 +20,7 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.wrap = false
+vim.o.linebreak = true
 local wrap_group = vim.api.nvim_create_augroup("Markdown Wrap Settings", { clear = true })
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = { '*.md' },

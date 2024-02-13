@@ -24,6 +24,8 @@ return
 
         highlight = {
           enable = true,
+          -- regex highlighting is turned on for better spell checking.
+          -- In the case of performance issues, turn this off
           additional_vim_regex_highlighting = true,
         },
         indent = { enable = true },

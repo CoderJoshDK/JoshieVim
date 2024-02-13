@@ -99,7 +99,7 @@ return {
       -- clangd = {},
       -- gopls = {},
 
-      -- rust_analyzer = {},
+      rust_analyzer = {},
       ruff_lsp = {},
       pyright = {
         pyright = { disableOrganizeImports = true },
@@ -117,7 +117,13 @@ return {
     }
 
     -- Setup neovim lua configuration
-    require("neodev").setup()
+    -- the bellow override, lets me do plugin work outside of recognized directories
+    require("neodev").setup({
+      override = function(root_dir, library)
+        library.enabled = true
+        library.plugins = true
+      end
+    })
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()

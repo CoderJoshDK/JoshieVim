@@ -1,4 +1,5 @@
-return {
+local M = {}
+table.insert(M, {
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   -- LSP Configuration & Plugins
@@ -19,12 +20,6 @@ return {
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
     local on_attach = function(client, bufnr)
-      -- NOTE: Remember that lua is a real programming language, and as such it is possible
-      -- to define small helper and utility functions so you don't have to repeat yourself
-      -- many times.
-      --
-      -- In this case, we create a function that lets us more easily define mappings specific
-      -- for LSP related items. It sets the mode, buffer and description for us each time.
       local nmap = function(keys, func, desc)
         if desc then
           desc = "LSP: " .. desc
@@ -147,4 +142,31 @@ return {
       end,
     })
   end,
-}
+})
+table.insert(M, {
+  "folke/trouble.nvim",
+  config = function()
+    require("trouble").setup({
+      icons = false,
+    })
+
+    vim.keymap.set("n", "<leader>tt", function()
+      require("trouble").toggle()
+    end)
+
+    vim.keymap.set("n", "[t", function()
+      require("trouble").next({ skip_groups = true, jump = true });
+    end)
+
+    vim.keymap.set("n", "]t", function()
+      require("trouble").previous({ skip_groups = true, jump = true });
+    end)
+  end
+})
+table.insert(M, {
+  "ray-x/lsp_signature.nvim",
+  event = "VeryLazy",
+  opts = {},
+  config = function(_, opts) require 'lsp_signature'.setup(opts) end
+})
+return M

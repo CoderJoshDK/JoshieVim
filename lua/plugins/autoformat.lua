@@ -28,7 +28,8 @@ return {
       -- lua = { "stylua" },
       json = { { "prettierd", "prettier", "jq" } },
       python = { "ruff_isort", "ruff_format" },
-      -- javascript = { { "prettierd", "prettier" } },
+      javascript = { { "prettierd", "prettier" } },
+      typescript = { { "prettierd", "prettier" } },
       markdown = { "markdownlint" },
     },
     -- Set up format-on-save

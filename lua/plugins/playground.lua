@@ -26,7 +26,7 @@ return {
     -- dir = "~/Dev/projects/plugins/playground.nvim/",
 
     opts = { hours_to_live = 0 },
-    cmds = {
+    cmd = {
       "Playground",
       "PlaygroundSelect",
       "PlaygroundDelete",

@@ -1,5 +1,6 @@
-return
-{
+local M = {}
+table.insert(M, { "nvim-treesitter/nvim-treesitter-context" })
+table.insert(M, {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
@@ -16,7 +17,7 @@ return
           'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx',
           'javascript', 'typescript', 'vimdoc', 'vim', 'bash',
           'markdown', 'markdown_inline', 'comment', 'gitignore', 'json',
-          'toml',
+          'toml', 'sql', 'requirements',
         },
 
         -- Auto install languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -85,4 +86,5 @@ return
       }
     end, 0)
   end
-}
+})
+return M

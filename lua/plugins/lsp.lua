@@ -27,7 +27,7 @@ table.insert(M, {
 
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
       end
-      if client.name == "ruff_lsp" then
+      if client.name == "ruff" then
         client.server_capabilities.hoverProvider = false
       end
 
@@ -91,11 +91,8 @@ table.insert(M, {
     --  If you want to override the default filetypes that your language server will attach to you can
     --  define the property 'filetypes' to the map in question.
     local servers = {
-      -- clangd = {},
-      -- gopls = {},
-
       rust_analyzer = {},
-      ruff_lsp = {},
+      ruff = {},
       pyright = {
         pyright = { disableOrganizeImports = true },
         python = {}
@@ -143,6 +140,7 @@ table.insert(M, {
     })
   end,
 })
+
 table.insert(M, {
   "folke/trouble.nvim",
   config = function()
@@ -163,6 +161,7 @@ table.insert(M, {
     end)
   end
 })
+
 table.insert(M, {
   "ray-x/lsp_signature.nvim",
   event = "VeryLazy",

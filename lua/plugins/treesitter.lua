@@ -1,5 +1,5 @@
 local M = {}
-table.insert(M, { "nvim-treesitter/nvim-treesitter-context" })
+table.insert(M, { "nvim-treesitter/nvim-treesitter-context", opts = { max_lines = 10 } })
 table.insert(M, {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',

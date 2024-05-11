@@ -30,6 +30,7 @@ return {
       python = { "ruff_isort", "ruff_format" },
       javascript = { { "prettierd", "prettier" } },
       typescript = { { "prettierd", "prettier" } },
+      typescriptreact = { { "prettierd", "prettier" } },
       markdown = { "markdownlint" },
     },
     -- Set up format-on-save

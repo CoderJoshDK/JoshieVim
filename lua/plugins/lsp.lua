@@ -93,8 +93,8 @@ table.insert(M, {
     local servers = {
       rust_analyzer = {},
       ruff = {},
-      pyright = {
-        pyright = { disableOrganizeImports = true },
+      basedpyright = {
+        basedpyright = { disableOrganizeImports = true },
         python = {}
       },
       -- html = { filetypes = { 'html', 'twig', 'hbs'} },

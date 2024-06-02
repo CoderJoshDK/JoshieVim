@@ -94,7 +94,10 @@ table.insert(M, {
       rust_analyzer = {},
       ruff = {},
       basedpyright = {
-        basedpyright = { disableOrganizeImports = true },
+        basedpyright = {
+          disableOrganizeImports = true,
+          analysis = { typeCheckingMode = "standard" }
+        },
         python = {}
       },
       -- html = { filetypes = { 'html', 'twig', 'hbs'} },
@@ -143,23 +146,52 @@ table.insert(M, {
 
 table.insert(M, {
   "folke/trouble.nvim",
-  config = function()
-    require("trouble").setup({
-      icons = false,
-    })
-
-    vim.keymap.set("n", "<leader>tt", function()
-      require("trouble").toggle()
-    end)
-
-    vim.keymap.set("n", "[t", function()
-      require("trouble").next({ skip_groups = true, jump = true });
-    end)
-
-    vim.keymap.set("n", "]t", function()
-      require("trouble").previous({ skip_groups = true, jump = true });
-    end)
-  end
+  opts = {
+    modes = {
+      mydiags = {
+        mode = "diagnostics",
+        focus = true,
+        win = {
+          type = "split",
+          size = 0.35,
+          position = "right"
+        },
+      },
+    },
+  },
+  cmd = "Trouble",
+  keys = {
+    {
+      "<leader>xx",
+      "<cmd>Trouble mydiags toggle<cr>",
+      desc = "Diagnostics (Trouble)",
+    },
+    {
+      "<leader>xX",
+      "<cmd>Trouble mydiags toggle filter.buf=0<cr>",
+      desc = "Buffer Diagnostics (Trouble)",
+    },
+    {
+      "<leader>cs",
+      "<cmd>Trouble symbols toggle focus=false<cr>",
+      desc = "Symbols (Trouble)",
+    },
+    {
+      "<leader>cl",
+      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+      desc = "LSP Definitions / references / ... (Trouble)",
+    },
+    {
+      "<leader>xL",
+      "<cmd>Trouble loclist toggle<cr>",
+      desc = "Location List (Trouble)",
+    },
+    {
+      "<leader>xQ",
+      "<cmd>Trouble qflist toggle<cr>",
+      desc = "Quickfix List (Trouble)",
+    },
+  },
 })
 
 table.insert(M, {

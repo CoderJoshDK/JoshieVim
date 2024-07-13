@@ -1,24 +1,5 @@
 return {
   {
-    "michaelb/sniprun",
-    branch = "master",
-
-    build = "sh install.sh",
-
-    config = function()
-      require("sniprun").setup({
-        display = {
-          "Classic",
-          -- "VirtualText",
-          "VirtualTextOk",
-        },
-        repl_enable = { 'Python3_original' },
-        live_mode_toggle = 'enable',
-        inline_messages = true,
-      })
-    end,
-  },
-  {
     "CoderJoshDK/playground.nvim",
 
     -- the bellow is for me to test things with local dev

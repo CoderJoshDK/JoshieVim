@@ -7,6 +7,11 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Movement
 vim.keymap.set({ 'n', 'v' }, '<C-u>', '<C-u>zz', { desc = 'Go up half page; center page' })
 vim.keymap.set({ 'n', 'v' }, '<C-d>', '<C-d>zz', { desc = 'Go down half page; center page' })
+-- Window Movement
+vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true, noremap = true }) -- left window
+vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true, noremap = true }) -- up window
+vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true, noremap = true }) -- down window
+vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true, noremap = true }) -- right window
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -106,5 +111,5 @@ vim.keymap.set("n", "<leader>rsn", "<cmd>ScratchWithName<cr>", { desc = '[R]un [
 vim.keymap.set("n", "<leader>rso", "<cmd>ScratchOpen<cr>", { desc = '[R]un [S]cratch [O]pen' })
 vim.keymap.set("n", "<leader>rsO", "<cmd>ScratchOpenFzf<cr>", { desc = '[R]un [S]cratch Fuzzy Open' })
 -- Sniprun for running code
-vim.keymap.set({ 'n', 'v' }, '<leader>rc', '<Plug>SnipRun', { silent = true, desc = '[R]un [C]ode' })
+-- vim.keymap.set({ 'n', 'v' }, '<leader>rc', '<Plug>SnipRun', { silent = true, desc = '[R]un [C]ode' })
 -- vim.keymap.set('n', '<F5>', ":let b:caret=winsaveview() <CR> | :%SnipRun <CR>| :call winrestview(b:caret) <CR>", {})

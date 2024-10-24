@@ -26,11 +26,11 @@ return {
     },
     formatters_by_ft = {
       -- lua = { "stylua" },
-      json = { { "prettierd", "prettier", "jq" } },
+      json = { "prettierd", "prettier", "jq", stop_after_first = true },
       python = { "ruff_isort", "ruff_format" },
-      javascript = { { "prettierd", "prettier" } },
-      typescript = { { "prettierd", "prettier" } },
-      typescriptreact = { { "prettierd", "prettier" } },
+      javascript = { "prettierd", "prettier", stop_after_first = true },
+      typescript = { "prettierd", "prettier", stop_after_first = true },
+      typescriptreact = { "prettierd", "prettier", stop_after_first = true },
       markdown = { "markdownlint" },
     },
     -- Set up format-on-save

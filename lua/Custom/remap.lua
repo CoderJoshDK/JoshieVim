@@ -104,6 +104,9 @@ vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by 
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
+-- nvim-tree
+vim.keymap.set('n', "<leader>tt", "<cmd>NvimTreeToggle<CR>", { desc = '[T]oggle [T]ree' })
+
 -- Playground functions
 -- scratch for temporary code
 vim.keymap.set("n", "<leader>rss", "<cmd>Scratch<cr>", { desc = '[R]un [S]cratch [S]tart' })

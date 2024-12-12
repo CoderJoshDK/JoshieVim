@@ -26,7 +26,7 @@ return {
     },
     formatters_by_ft = {
       -- lua = { "stylua" },
-      json = { "prettierd", "prettier", "jq", stop_after_first = true },
+      json = { "jq", "prettierd", "prettier", stop_after_first = true },
       python = { "ruff_isort", "ruff_format" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
       typescript = { "prettierd", "prettier", stop_after_first = true },

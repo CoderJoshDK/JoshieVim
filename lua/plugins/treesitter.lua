@@ -17,7 +17,7 @@ table.insert(M, {
           'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx',
           'javascript', 'typescript', 'vimdoc', 'vim', 'bash',
           'markdown', 'markdown_inline', 'comment', 'gitignore', 'json',
-          'toml', 'sql', 'requirements',
+          'toml', 'sql', 'requirements', 'yaml', 'xml', 'terraform',
         },
 
         -- Auto install languages that are not installed. Defaults to false (but you can change for yourself!)

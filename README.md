@@ -26,6 +26,8 @@ This setup does not work out of the box and requires you to download a few depen
   * scratch files and a code runner (contains a plugin I created)
 * plugins
   * all other plugins that do not require special configs or are not important enough to pull out
+* snacks
+  * Extra QoL plugins. Requires the gh CLI and `gh ext install meiji163/gh-notify`
 * telescope
   * telescope. nuff said
 * tree

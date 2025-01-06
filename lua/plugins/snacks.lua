@@ -54,7 +54,7 @@ table.insert(M, {
             {
               icon = " ",
               title = "Open PRs",
-              cmd = "gh pr list -L 3 -a \"@me\"",
+              cmd = "gh pr list -L 3 --author \"@me\"",
               key = "p",
               action = function()
                 vim.fn.jobstart("gh pr list --web", { detach = true })

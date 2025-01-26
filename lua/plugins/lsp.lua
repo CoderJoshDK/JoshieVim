@@ -117,7 +117,10 @@ table.insert(M, {
       basedpyright = {
         basedpyright = {
           disableOrganizeImports = true,
-          analysis = { typeCheckingMode = "standard" }
+          reportMissingTypeStubs = false,
+          reportAny = false,
+          reportExplicitAny = false,
+          analysis = { typeCheckingMode = "recommended" }
         },
         python = {}
       },
@@ -140,6 +143,7 @@ table.insert(M, {
     local mason_lspconfig = require("mason-lspconfig")
 
     mason_lspconfig.setup({
+      automatic_installation = true,
       ensure_installed = vim.tbl_keys(servers),
     })
 

@@ -32,7 +32,7 @@ return {
       typescript = { "prettierd", "prettier", stop_after_first = true },
       typescriptreact = { "prettierd", "prettier", stop_after_first = true },
       markdown = { "markdownlint" },
-      rust = { "rustfmt", lsp_format = "fallback" },
+      rust = { "rustfmt", lsp_format = "fallback", args = { "+nightly" } },
     },
     -- Set up format-on-save
     format_on_save = { timeout_ms = 1000, lsp_fallback = true }, -- Customize formatters

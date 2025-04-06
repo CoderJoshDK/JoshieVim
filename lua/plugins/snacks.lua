@@ -13,6 +13,7 @@ table.insert(M, {
     terminal = { enabled = true },
     rename = { enabled = true },
     statuscolumn = { enable = true },
+    image = { enabled = true },
     dashboard = {
       sections = {
         { section = "header" },

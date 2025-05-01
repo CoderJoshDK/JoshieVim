@@ -119,8 +119,9 @@ table.insert(M, {
             loadOutDirsFromCheck = true,
             runBuildScripts = true,
           },
+          checkOnSave = true,
           -- Add clippy lints for Rust.
-          checkOnSave = {
+          check = {
             allFeatures = true,
             command = "clippy",
             extraArgs = {

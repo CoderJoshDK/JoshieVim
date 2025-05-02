@@ -85,11 +85,19 @@ table.insert(M, {
     },
   },
   keys = {
-    { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
-    { "<leader>gB", function() Snacks.gitbrowse() end,          desc = "Git Browse",      mode = { "n", "v" } },
-    { "<leader>gb", function() Snacks.git.blame_line() end,     desc = "Git Blame Line" },
-    { "<c-/>",      function() Snacks.terminal() end,           desc = "Toggle Terminal" },
-    { "<c-_>",      function() Snacks.terminal() end,           desc = "which_key_ignore" },
+    { "<leader>cR", function() Snacks.rename.rename_file() end,           desc = "Rename File" },
+    { "<leader>gB", function() Snacks.gitbrowse() end,                    desc = "Git Browse",            mode = { "n", "v" } },
+    { "<leader>gb", function() Snacks.git.blame_line() end,               desc = "Git Blame Line" },
+    { "<c-/>",      function() Snacks.terminal() end,                     desc = "Toggle Terminal" },
+    { "<c-_>",      function() Snacks.terminal() end,                     desc = "which_key_ignore" },
+    -- LSP
+    { "gd",         function() Snacks.picker.lsp_definitions() end,       desc = "Goto Definition" },
+    { "gr",         function() Snacks.picker.lsp_references() end,        nowait = true,                  desc = "References" },
+    { "gD",         function() Snacks.picker.lsp_declarations() end,      desc = "Goto Declaration" },
+    { "gI",         function() Snacks.picker.lsp_implementations() end,   desc = "Goto Implementation" },
+    { "gy",         function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
+    { "<leader>ss", function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
+    { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
   },
   init = function()
     local prev = { new_name = "", old_name = "" } -- Prevents duplicate events

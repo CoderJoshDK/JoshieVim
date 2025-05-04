@@ -74,6 +74,7 @@ table.insert(M, {
         { "<leader>d", desc = "[D]ocument" },
         { "<leader>g", desc = "[G]it" },
         { "<leader>r", desc = "[R]ename" },
+        { "<leader>f", desc = "[F]ind" },
         { "<leader>s", desc = "[S]earch" },
         { "<leader>t", desc = "[T]oggle" },
         { "<leader>w", desc = "[W]orkspace" },
@@ -180,6 +181,26 @@ table.insert(M, {
 
 table.insert(M, {
   "folke/trouble.nvim",
+  specs = {
+    "folke/snacks.nvim",
+    opts = function(_, opts)
+      return vim.tbl_deep_extend("force", opts or {}, {
+        picker = {
+          actions = require("trouble.sources.snacks").actions,
+          win = {
+            input = {
+              keys = {
+                ["<c-t>"] = {
+                  "trouble_open",
+                  mode = { "n", "i" },
+                },
+              },
+            },
+          },
+        },
+      })
+    end,
+  },
   opts = {
     modes = {
       mydiags = {

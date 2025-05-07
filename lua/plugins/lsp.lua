@@ -6,12 +6,12 @@ table.insert(M, {
   "neovim/nvim-lspconfig",
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
-    { "williamboman/mason.nvim", config = true },
-    "williamboman/mason-lspconfig.nvim",
+    { "mason-org/mason.nvim", config = true },
+    "mason-org/mason-lspconfig.nvim",
 
     -- Useful status updates for LSP
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { "j-hui/fidget.nvim",       opts = {} },
+    { "j-hui/fidget.nvim",    opts = {} },
     {
       {
         "folke/lazydev.nvim",
@@ -33,7 +33,7 @@ table.insert(M, {
   config = function()
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
-    local on_attach = function(client, bufnr)
+    vim.lsp.client.on_attach = function(client, bufnr)
       local nmap = function(keys, func, desc)
         if desc then
           desc = "LSP: " .. desc
@@ -92,8 +92,6 @@ table.insert(M, {
 
     -- mason-lspconfig requires that these setup functions are called in this order
     -- before setting up the servers.
-    require("mason").setup()
-    require("mason-lspconfig").setup()
 
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -103,9 +101,9 @@ table.insert(M, {
     --
     --  If you want to override the default filetypes that your language server will attach to you can
     --  define the property 'filetypes' to the map in question.
-    local servers = {
-      gopls = {},
-      rust_analyzer = {
+    --
+    vim.lsp.config('rust_analyzer', {
+      settings = {
         ['rust-analyzer'] = {
           cargo = {
             allFeatures = true,
@@ -131,9 +129,10 @@ table.insert(M, {
             },
           },
         }
-      },
-      ruff = {},
-      basedpyright = {
+      }
+    })
+    vim.lsp.config('basedpyright', {
+      settings = {
         basedpyright = {
           disableOrganizeImports = true,
           reportMissingTypeStubs = false,
@@ -142,17 +141,21 @@ table.insert(M, {
           analysis = { typeCheckingMode = "recommended" }
         },
         python = {}
-      },
-      -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-      lua_ls = {
+      }
+    })
+    vim.lsp.config('lua_ls', {
+      settings = {
         Lua = {
           workspace = { checkThirdParty = false },
           telemetry = { enable = false },
           -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
           -- diagnostics = { disable = { 'missing-fields' } },
-        },
-      },
-    }
+        }
+      }
+    })
+
+    require("mason").setup()
+    require("mason-lspconfig").setup()
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -162,19 +165,9 @@ table.insert(M, {
     local mason_lspconfig = require("mason-lspconfig")
 
     mason_lspconfig.setup({
+      automatic_enable = true,
       automatic_installation = true,
-      ensure_installed = vim.tbl_keys(servers),
-    })
-
-    mason_lspconfig.setup_handlers({
-      function(server_name)
-        require("lspconfig")[server_name].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = servers[server_name],
-          -- filetypes = (servers[server_name] or {}).filetypes, -- defaults are fine
-        })
-      end,
+      ensure_installed = { "gopls", "ruff", "rust_analyzer", "basedpyright", "lua_ls" }
     })
   end,
 })

@@ -33,38 +33,45 @@ table.insert(M, {
   config = function()
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
-    vim.lsp.client.on_attach = function(client, bufnr)
-      local nmap = function(keys, func, desc)
-        if desc then
-          desc = "LSP: " .. desc
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if not client then
+          return
         end
 
-        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+        local nmap = function(keys, func, desc)
+          if desc then
+            desc = "LSP: " .. desc
+          end
+
+          vim.keymap.set("n", keys, func, { buffer = true, desc = desc })
+        end
+        if client.name == "ruff" then
+          client.server_capabilities.hoverProvider = false
+        end
+
+        nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+        nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+        nmap("<leader>cd", vim.diagnostic.open_float, "[C]ode [D]iagnostic")
+
+        -- See `:help K` for why this keymap
+        nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+        nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+
+        -- Lesser used LSP functionality
+        nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+        nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+        nmap("<leader>wl", function()
+          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, "[W]orkspace [L]ist Folders")
+
+        -- Create a command `:Format` local to the LSP buffer
+        vim.api.nvim_buf_create_user_command(ev.buf, "Format", function(_)
+          vim.lsp.buf.format()
+        end, { desc = "Format current buffer with LSP" })
       end
-      if client.name == "ruff" then
-        client.server_capabilities.hoverProvider = false
-      end
-
-      nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-      nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-      nmap("<leader>cd", vim.diagnostic.open_float, "[C]ode [D]iagnostic")
-
-      -- See `:help K` for why this keymap
-      nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-      nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-
-      -- Lesser used LSP functionality
-      nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-      nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-      nmap("<leader>wl", function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end, "[W]orkspace [L]ist Folders")
-
-      -- Create a command `:Format` local to the LSP buffer
-      vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-        vim.lsp.buf.format()
-      end, { desc = "Format current buffer with LSP" })
-    end
+    })
 
     -- document existing key chains
     require("which-key").add({

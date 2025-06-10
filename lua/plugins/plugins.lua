@@ -128,15 +128,11 @@ return {
   },
   {
     -- Render MD
-    "toppair/peek.nvim",
+    'MeanderingProgrammer/render-markdown.nvim',
     event = { "VeryLazy" },
-    build = "deno task --quiet build:fast",
-    config = function()
-      require("peek").setup()
-      -- refer to `configuration to change defaults`
-      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-    end,
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
   },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },

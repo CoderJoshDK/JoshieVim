@@ -42,6 +42,8 @@ vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.o.breakindent = true
+vim.o.smartindent = true
+vim.o.smarttab = true
 
 -- Save undo history
 vim.o.undofile = true
@@ -86,4 +88,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup("plugins")
-require("Custom")
+require("config.init")

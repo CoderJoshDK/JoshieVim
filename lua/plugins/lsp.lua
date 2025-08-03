@@ -174,7 +174,7 @@ table.insert(M, {
     mason_lspconfig.setup({
       automatic_enable = true,
       automatic_installation = true,
-      ensure_installed = { "gopls", "ruff", "rust_analyzer", "basedpyright", "lua_ls" }
+      ensure_installed = { "ruff", "rust_analyzer", "basedpyright", "lua_ls" }
     })
   end,
 })

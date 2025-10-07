@@ -77,14 +77,15 @@ table.insert(M, {
     require("which-key").add({
       {
         group = "LSP",
-        { "<leader>c", desc = "[C]ode" },
-        { "<leader>d", desc = "[D]ocument" },
-        { "<leader>g", desc = "[G]it" },
-        { "<leader>r", desc = "[R]ename" },
-        { "<leader>f", desc = "[F]ind" },
-        { "<leader>s", desc = "[S]earch" },
-        { "<leader>t", desc = "[T]oggle" },
-        { "<leader>w", desc = "[W]orkspace" },
+        { "<leader>c",  desc = "[C]ode" },
+        { "<leader>d",  desc = "[D]ocument" },
+        { "<leader>g",  desc = "[G]it" },
+        { "<leader>gd", desc = "[G]it [D]iff" },
+        { "<leader>r",  desc = "[R]ename" },
+        { "<leader>f",  desc = "[F]ind" },
+        { "<leader>s",  desc = "[S]earch" },
+        { "<leader>t",  desc = "[T]oggle" },
+        { "<leader>w",  desc = "[W]orkspace" },
       }
     })
     -- register which-key VISUAL mode

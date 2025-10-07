@@ -12,6 +12,7 @@ return {
   -- Useful plugin to show you pending keybinds.
   {
     'folke/which-key.nvim',
+    event = "VeryLazy",
     opts = {
       preset = "modern"
     }
@@ -95,6 +96,7 @@ return {
     priority = 1000,
     config = function()
       require("catppuccin").setup({
+        auto_integrations = true,
         flavour = "mocha"
       })
       vim.cmd.colorscheme "catppuccin"
@@ -135,5 +137,9 @@ return {
     opts = {},
   },
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    event = "BufEnter",
+    opts = {}
+  },
 }

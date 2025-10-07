@@ -3,11 +3,11 @@ table.insert(M, {
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   -- LSP Configuration & Plugins
-  "neovim/nvim-lspconfig",
+  "mason-org/mason-lspconfig.nvim",
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
     { "mason-org/mason.nvim", config = true },
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
 
     -- Useful status updates for LSP
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -208,7 +208,7 @@ table.insert(M, {
         focus = true,
         win = {
           type = "split",
-          size = 0.35,
+          size = 0.40,
           position = "right"
         },
       },
@@ -251,8 +251,13 @@ table.insert(M, {
 
 table.insert(M, {
   "ray-x/lsp_signature.nvim",
-  event = "VeryLazy",
-  opts = {},
+  event = "InsertEnter",
+  opts = {
+    bind = true,
+    handler_opts = {
+      border = "rounded"
+    }
+  },
   config = function(_, opts) require 'lsp_signature'.setup(opts) end
 })
 return M

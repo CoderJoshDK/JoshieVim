@@ -49,3 +49,6 @@ vim.keymap.set("n", "<leader>rsO", "<cmd>ScratchOpenFzf<cr>", { desc = '[R]un [S
 -- Sniprun for running code
 -- vim.keymap.set({ 'n', 'v' }, '<leader>rc', '<Plug>SnipRun', { silent = true, desc = '[R]un [C]ode' })
 -- vim.keymap.set('n', '<F5>', ":let b:caret=winsaveview() <CR> | :%SnipRun <CR>| :call winrestview(b:caret) <CR>", {})
+
+-- Extra git commands
+vim.keymap.set("n", "<leader>Gc", ":Git switch -c ", { desc = "[G]it create new branch" })

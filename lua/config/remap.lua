@@ -24,11 +24,11 @@ vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = tr
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
+-- See `:help vim.hl.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
   group = highlight_group,
   pattern = '*',

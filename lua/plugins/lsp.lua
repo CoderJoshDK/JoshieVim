@@ -113,6 +113,11 @@ table.insert(M, {
         vim.lsp.config('rust_analyzer', {
             settings = {
                 ['rust-analyzer'] = {
+                    completion = {
+                        callable = {
+                            snippets = 'add_parenthesis'
+                        }
+                    },
                     cargo = {
                         allFeatures = true,
                         loadOutDirsFromCheck = true,
@@ -164,10 +169,6 @@ table.insert(M, {
 
         require("mason").setup()
         require("mason-lspconfig").setup()
-
-        -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
         -- Ensure the servers above are installed
         local mason_lspconfig = require("mason-lspconfig")

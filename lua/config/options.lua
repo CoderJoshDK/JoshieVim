@@ -42,7 +42,7 @@ vim.o.smartcase = true
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
-vim.opt.scrolloff = 10 -- Keep the cursor off the edge of the screen
+vim.o.scrolloff = 10 -- Keep the cursor off the edge of the screen
 
 -- Decrease update time
 vim.o.updatetime = 50

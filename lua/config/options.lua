@@ -24,6 +24,9 @@ vim.o.spelloptions = "camel"
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
+-- Don't show the mode, since it's already in the status line
+vim.o.showmode = false
+
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`

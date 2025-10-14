@@ -112,6 +112,10 @@ return {
                 component_separators = '|',
                 section_separators = '',
             },
+            extensions = {
+                'nvim-tree', 'fugitive', 'quickfix', 'trouble'
+            },
+
         },
     },
 

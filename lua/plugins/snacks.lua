@@ -12,7 +12,6 @@ table.insert(M, {
         notifier = { enabled = true },
         quickfile = { enabled = true },
         rename = { enabled = true },
-        statuscolumn = { enable = true },
         scope = { enabled = true },
         image = { enabled = true },
         picker = {
@@ -111,8 +110,8 @@ table.insert(M, {
         { "<leader>fr",      function() Snacks.picker.recent() end,                                  desc = "Recent" },
         -- LSP
         { "gd",              function() Snacks.picker.lsp_definitions() end,                         desc = "Goto Definition" },
-        { "gr",              function() Snacks.picker.lsp_references() end,                          nowait = true,                     desc = "References" },
         { "gD",              function() Snacks.picker.lsp_declarations() end,                        desc = "Goto Declaration" },
+        { "gr",              function() Snacks.picker.lsp_references() end,                          nowait = true,                     desc = "References" },
         { "gI",              function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
         { "gy",              function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
         { "<leader>ss",      function() Snacks.picker.lsp_symbols() end,                             desc = "LSP Symbols" },
@@ -125,6 +124,7 @@ table.insert(M, {
         { "<leader>gS",      function() Snacks.picker.git_stash() end,                               desc = "Git Stash" },
         { "<leader>gc",      function() Snacks.picker.git_diff() end,                                desc = "Search Git Diff (Hunks)" },
         { "<leader>gf",      function() Snacks.picker.git_log_file() end,                            desc = "Git Log File" },
+        { "<leader>gg",      function() Snacks.lazygit() end,                                        desc = "Lazygit" },
         -- search
         { '<leader>s"',      function() Snacks.picker.registers() end,                               desc = "Registers" },
         { '<leader>s/',      function() Snacks.picker.search_history() end,                          desc = "Search History" },
@@ -151,6 +151,11 @@ table.insert(M, {
         -- Scratch
         { "<leader>.",       function() Snacks.scratch() end,                                        desc = "Toggle Scratch Buffer" },
         { "<leader>S",       function() Snacks.scratch.select() end,                                 desc = "Select Scratch Buffer" },
+        -- Other
+        { "<leader>z",       function() Snacks.zen() end,                                            desc = "Toggle Zen Mode" },
+        { "<leader>Z",       function() Snacks.zen.zoom() end,                                       desc = "Toggle Zoom" },
+        { "]]",              function() Snacks.words.jump(vim.v.count1) end,                         desc = "Next Reference",           mode = { "n", "t" } },
+        { "[[",              function() Snacks.words.jump(-vim.v.count1) end,                        desc = "Prev Reference",           mode = { "n", "t" } },
     },
     init = function()
         local prev = { new_name = "", old_name = "" } -- Prevents duplicate events
@@ -189,8 +194,6 @@ table.insert(M, {
                     :map(
                         "<leader>uc")
                 Snacks.toggle.treesitter():map("<leader>uT")
-                Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map(
-                "<leader>ub")
                 Snacks.toggle.inlay_hints():map("<leader>uh")
                 Snacks.toggle.indent():map("<leader>ug")
                 Snacks.toggle.dim():map("<leader>uD")

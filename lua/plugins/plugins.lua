@@ -70,7 +70,7 @@ return {
                 map('n', '<leader>gp', gitsigns.preview_hunk, { desc = 'preview git hunk' })
                 map('n', '<leader>gdd', gitsigns.diffthis, { desc = 'git diff against index' })
                 map('n', '<leader>gdD', function()
-                    gitsigns.diffthis('~')
+                    gitsigns.diffthis('@')
                 end, { desc = 'git diff against last commit' })
                 map('n', '<leader>gdm', function()
                     gitsigns.diffthis('main')

@@ -10,7 +10,7 @@ return {
                 require("conform").format({ async = true, lsp_format = "fallback" })
             end,
             mode = "",
-            desc = "Format buffer",
+            desc = "[F]ormat buffer",
         },
     },
     -- Everything in opts will be passed to setup()

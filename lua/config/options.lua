@@ -2,7 +2,7 @@
 -- See `:help vim.o`
 
 -- Set highlight on search
-vim.o.hlsearch = false
+-- vim.o.hlsearch = false -- turn off highlight by hitting escape
 vim.o.incsearch = true
 
 -- Make line numbers default
@@ -48,14 +48,23 @@ vim.o.scrolloff = 10 -- Keep the cursor off the edge of the screen
 vim.o.updatetime = 50
 vim.o.timeoutlen = 300
 
+vim.o.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+-- Preview substitutions live, as you type!
+vim.o.inccommand = 'split'
+
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.o.confirm = true
 
 -- disable netrw for nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
 vim.o.colorcolumn = "100"

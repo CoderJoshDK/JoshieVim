@@ -147,6 +147,7 @@ table.insert(M, {
         vim.lsp.config('basedpyright', {
             settings = {
                 basedpyright = {
+                    enableBasedFeatures = true,
                     disableOrganizeImports = true,
                     reportMissingTypeStubs = false,
                     reportAny = false,

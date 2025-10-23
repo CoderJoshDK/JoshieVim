@@ -45,6 +45,8 @@ return {
         keymap = {
             preset = 'default',
             ['<C-S-n>'] = { 'select_prev', 'fallback_to_mappings' },
+            ['<Up>'] = false,
+            ['<Down>'] = false,
         },
     },
 }

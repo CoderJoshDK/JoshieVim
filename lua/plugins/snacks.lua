@@ -86,7 +86,7 @@ table.insert(M, {
     },
     keys = {
         { "<leader>cR",      function() Snacks.rename.rename_file() end,                             desc = "Rename File" },
-        { "<leader>gB",      function() Snacks.gitbrowse() end,                                      desc = "Git Browse",               mode = { "n", "v" } },
+        { "<leader>gB",      function() Snacks.gitbrowse() end,                                      desc = "Git Browse",                    mode = { "n", "v" } },
         -- Top Pickers & Explorer
         { "<leader><space>", function() Snacks.picker.smart() end,                                   desc = "Smart Find Files" },
         { "<leader>,",       function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
@@ -104,7 +104,7 @@ table.insert(M, {
         -- LSP
         { "gd",              function() Snacks.picker.lsp_definitions() end,                         desc = "Goto Definition" },
         { "gD",              function() Snacks.picker.lsp_declarations() end,                        desc = "Goto Declaration" },
-        { "gr",              function() Snacks.picker.lsp_references() end,                          nowait = true,                     desc = "References" },
+        { "gr",              function() Snacks.picker.lsp_references() end,                          nowait = true,                          desc = "References" },
         { "gI",              function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
         { "gy",              function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
         { "<leader>ss",      function() Snacks.picker.lsp_symbols() end,                             desc = "LSP Symbols" },
@@ -116,6 +116,7 @@ table.insert(M, {
         { "<leader>gs",      function() Snacks.picker.git_status() end,                              desc = "Git Status" },
         { "<leader>gS",      function() Snacks.picker.git_stash() end,                               desc = "Git Stash" },
         { "<leader>gc",      function() Snacks.picker.git_diff() end,                                desc = "Search Git Diff (Hunks)" },
+        { "<leader>gC",      function() Snacks.picker.git_diff({ base = "origin" }) end,             desc = "Search Git origin Diff (Hunks)" },
         { "<leader>gf",      function() Snacks.picker.git_log_file() end,                            desc = "Git Log File" },
         { "<leader>gg",      function() Snacks.lazygit() end,                                        desc = "Lazygit" },
         -- search
@@ -140,15 +141,15 @@ table.insert(M, {
         { "<leader>sr",      function() Snacks.picker.resume() end,                                  desc = "Resume" },
         { "<leader>su",      function() Snacks.picker.undo() end,                                    desc = "Undo History" },
         { "<leader>sg",      function() Snacks.picker.grep() end,                                    desc = "Search Grep" },
-        { "<leader>sw",      function() Snacks.picker.grep_word() end,                               desc = "Visual selection or word", mode = { "n", "x" } },
+        { "<leader>sw",      function() Snacks.picker.grep_word() end,                               desc = "Visual selection or word",      mode = { "n", "x" } },
         -- Scratch
         { "<leader>.",       function() Snacks.scratch() end,                                        desc = "Toggle Scratch Buffer" },
         { "<leader>S",       function() Snacks.scratch.select() end,                                 desc = "Select Scratch Buffer" },
         -- Other
         { "<leader>z",       function() Snacks.zen() end,                                            desc = "Toggle Zen Mode" },
         { "<leader>Z",       function() Snacks.zen.zoom() end,                                       desc = "Toggle Zoom" },
-        { "]]",              function() Snacks.words.jump(vim.v.count1) end,                         desc = "Next Reference",           mode = { "n", "t" } },
-        { "[[",              function() Snacks.words.jump(-vim.v.count1) end,                        desc = "Prev Reference",           mode = { "n", "t" } },
+        { "]]",              function() Snacks.words.jump(vim.v.count1) end,                         desc = "Next Reference",                mode = { "n", "t" } },
+        { "[[",              function() Snacks.words.jump(-vim.v.count1) end,                        desc = "Prev Reference",                mode = { "n", "t" } },
     },
     init = function()
         local prev = { new_name = "", old_name = "" } -- Prevents duplicate events

@@ -263,4 +263,19 @@ table.insert(M, {
     },
     config = function(_, opts) require 'lsp_signature'.setup(opts) end
 })
+
+table.insert(M, {
+    "Davidyz/inlayhint-filler.nvim",
+    keys = {
+        {
+            "<Leader>I",
+            function()
+                require("inlayhint-filler").fill()
+            end,
+            desc = "Insert the [i]nlay-hint",
+            mode = { "n", "v" },
+        },
+    }
+})
+
 return M

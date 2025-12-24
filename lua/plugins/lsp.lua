@@ -115,7 +115,7 @@ table.insert(M, {
                 ['rust-analyzer'] = {
                     completion = {
                         callable = {
-                            snippets = 'add_parenthesis'
+                            snippets = 'add_parentheses'
                         }
                     },
                     cargo = {

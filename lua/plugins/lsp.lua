@@ -144,6 +144,11 @@ table.insert(M, {
                 }
             }
         })
+        vim.lsp.config('ty', {
+            settings = {
+                ty = {}
+            }
+        })
         vim.lsp.config('basedpyright', {
             settings = {
                 basedpyright = {
@@ -177,8 +182,9 @@ table.insert(M, {
         mason_lspconfig.setup({
             automatic_enable = true,
             automatic_installation = true,
-            ensure_installed = { "ruff", "rust_analyzer", "basedpyright", "lua_ls" }
+            ensure_installed = { "ruff", "rust_analyzer", "basedpyright", "ty", "lua_ls" }
         })
+        vim.lsp.enable('ty', false)
     end,
 })
 

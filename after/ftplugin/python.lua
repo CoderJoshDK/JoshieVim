@@ -17,9 +17,11 @@ vim.keymap.set({ 'n', 'i' }, '<M-s>', function()
         if has_value(clients, 'basedpyright') then
             vim.lsp.enable('basedpyright', false);
             vim.lsp.enable('ty', true);
+            vim.notify("Switching to ty");
         else
             vim.lsp.enable('basedpyright', true);
             vim.lsp.enable('ty', false);
+            vim.notify("Switching to basedpyright");
         end
         -- Not ideal, but clears diagnostics to prevent duplicates
         vim.api.nvim_command(':e')

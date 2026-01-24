@@ -1,5 +1,8 @@
 # Joshie's personal NeoVim setup
 
+>[!IMPORTANT]
+> This repo was moved to my [dotfiles](https://github.com/CoderJoshDK/.dotfiles/tree/main/.config/nvim)
+
 Starting point from kickstart with extra customization.
 This config is not made for others. But feel free to take inspiration or ~~steal~~ borrow some of my ideas/code.
 
@@ -32,10 +35,3 @@ This setup does not work out of the box and requires you to download a few depen
   * tree UI for when opening on `nvim .`. Does call for modifications to default tree view.
 * treesitter
   * treesitter
-
-### Blog posts
-
-I created a few blog post tutorials for setting up specific things.
-
-* [Spell checker on code](https://coderjoshdk.github.io/tutorials/2024-01-15-Setting-Up-Spellcheck-on-Code-in-NeoVim.html)
-* [Python things to keep in mind] (coming soon)
